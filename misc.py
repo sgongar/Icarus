@@ -48,3 +48,16 @@ def set_data_local_file(settings_file, location_info):
             config.write(configfile)
 
     return True
+
+def get_timestamp():
+    """ TODO Implement time zones
+
+    :return: A timestamp in ephem format
+    """
+    from time import time
+    from datetime import datetime
+    timestamp = time()
+
+    st = datetime.fromtimestamp(timestamp).strftime('%Y/%m/%d %H:%M')
+
+    return st

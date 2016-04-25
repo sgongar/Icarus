@@ -1,6 +1,6 @@
 # coding=utf-8
 import ephem
-from misc import get_data_from_file
+from misc import get_data_from_file, get_timestamp
 
 """
 Create a new object each time o change only time?
@@ -13,10 +13,7 @@ class Get_data(object):
 
         """
         location_info = get_data_from_file('.settings')
-        observer = self.create_observer(location_info)
-
-        # Return a tuple containing the requested data
-        self.get_data(observer)
+        self.observer = self.create_observer(location_info)
 
     def create_observer(self, location_info):
         """ Create observer method
@@ -30,7 +27,7 @@ class Get_data(object):
         observer.lon = location_info['lon']
         return  observer
 
-    def get_data(self, observer):
+    def get_data(self):
         """
 
         :param timestamp:
@@ -38,7 +35,11 @@ class Get_data(object):
         :return:
         """
         sun = ephem.Sun()
-        sun.compute(observer)
+        timestamp = get_timestamp()
+
+        time_date = ephem.Date(timestamp)
+        self.observer.date = time_date
+        sun.compute(self.observer)
 
         alt, az = sun.alt, sun.az
         return alt, az
