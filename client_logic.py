@@ -3,15 +3,13 @@
 # Create thread for UI
 # Create thread for getting data
 
-import sys
+from sys import argv, exit
+
 from PySide import QtGui
 
+app = QtGui.QApplication(argv)
 from client_ui import Main_window
-
-
-
-app = QtGui.QApplication(sys.argv)
 qapp = Main_window()
 qapp.show()
 
-sys.exit(app.exec_())
+exit(app.exec_())
