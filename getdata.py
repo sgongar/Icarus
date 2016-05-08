@@ -35,12 +35,12 @@ class Get_data(object):
         :return:
         """
         sun = ephem.Sun()
-        timestamp = get_timestamp()
+        timestamp, unix_time = get_timestamp()
 
         time_date = ephem.Date(timestamp)
         self.observer.date = time_date
         sun.compute(self.observer)
 
         alt, az = sun.alt, sun.az
-        return alt, az
+        return alt, az, unix_time
 

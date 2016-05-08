@@ -1,0 +1,8 @@
+# :Author:
+#     Samuel Góngora García (s.gongoragarcia@gmail.com)
+
+# __author__ = 's.gongoragarcia@gmail.com'
+
+# The followings packages are only need for debugging works
+cmake
+virtualenv

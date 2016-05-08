@@ -1,3 +1,6 @@
 [User]
 latitude = 37.98
-longitude = -2.56
+longitude = -2.75
+
+[System]
+min_altitude = 0

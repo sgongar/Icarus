@@ -1,7 +1,6 @@
 # coding=utf-8
 from os import path, getcwd
-from configparser import ConfigParser, SafeConfigParser
-
+from ConfigParser import ConfigParser, SafeConfigParser
 
 def get_data_from_file(settings_file):
     """
@@ -49,6 +48,7 @@ def set_data_local_file(settings_file, location_info):
 
     return True
 
+
 def get_timestamp():
     """ TODO Implement time zones
 
@@ -60,4 +60,24 @@ def get_timestamp():
 
     st = datetime.fromtimestamp(timestamp).strftime('%Y/%m/%d %H:%M')
 
-    return st
+    return st, timestamp
+
+
+def convert_data_to_draw(alt, az):
+    from math import degrees, pi
+    from numpy import sin, cos
+    rho = 150 - (150*degrees(alt))/90
+
+    x = rho * sin(az)
+    y = rho * cos(az)
+
+    x = 595 + x
+    y = 195 - y
+
+    return(x, y)
+
+def get_serial_ports():
+    _list = ('/dev/ttyUSB0', '/dev/null')
+
+    return _list
+
